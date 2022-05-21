@@ -68,7 +68,7 @@ contract Strategy is StrategyConvexBase {
         weth.approve(uniswapv3, type(uint256).max);
         
         // setup our rewards contract
-        pid = _pid; // this is the pool ID on convex, we use this to determine what the reweardsContract address is
+        pid = _pid; // this is the pool ID on convex, we use this to determine what the rewardsContract address is
         (address lptoken, , , address _rewardsContract, , ) =
             IConvexDeposit(depositContract).poolInfo(_pid);
 
@@ -76,7 +76,7 @@ contract Strategy is StrategyConvexBase {
         rewardsContract = IConvexRewards(_rewardsContract);
 
         // check that our LP token based on our pid matches our want
-        require(address(lptoken) == address(want));
+        require(address(lptoken) == address(want),"lp != want");
 
         // set our strategy's name
         stratName = _name;
